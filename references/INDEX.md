@@ -2,6 +2,8 @@
 
 Verbatim mirror of UCloud's ModelVerse `api_doc/` upstream. Per-model recipe is authoritative — when SKILL.md says "check the recipe", this is the tree it means.
 
+_Last synced: 2026-05-22T11:47:35+08:00_  ·  _upstream commit:_ `057413c6c206`
+
 ## Common
 - [`common/api-key.md`](./common/api-key.md)
 - [`common/certificate.md`](./common/certificate.md)
@@ -94,5 +96,6 @@ Verbatim mirror of UCloud's ModelVerse `api_doc/` upstream. Per-model recipe is 
 - [`audio_api/ttts.md`](./audio_api/ttts.md)
 
 ## Top-level
-- [`quick-start.md`](./quick-start.md)
 - [`qa.md`](./qa.md)
+- [`quick-start.md`](./quick-start.md)
+

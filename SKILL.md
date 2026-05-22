@@ -171,3 +171,25 @@ Full table: `references/common/error-code.md`.
 - Quick-start narrative → `references/quick-start.md`
 - Q&A grab-bag → `references/qa.md`
 - Browse-everything index → `references/INDEX.md`
+
+---
+
+## 8. Keeping references/ current
+
+`references/` is a verbatim mirror of upstream `channel-docs/ai-docs/modelverse` `api_doc/`. Refresh it whenever you suspect the upstream added/changed a model:
+
+```bash
+scripts/update-docs.sh             # sync + show diff (does not commit)
+scripts/update-docs.sh --commit    # sync + commit if changed
+```
+
+The script:
+- shallow-clones the upstream repo into a temp dir,
+- `rsync --delete`'s `api_doc/` into `references/` so files removed upstream disappear locally,
+- strips `_meta.json` and `*.png` (nav/asset noise),
+- regenerates `references/INDEX.md` with the upstream commit/date footer,
+- shows `git diff --stat` and (with `--commit`) lands a `sync references/ from upstream@<sha>` commit.
+
+Override upstream URL or branch with env vars: `UPSTREAM=...` / `BRANCH=...`. The default points at the internal GitLab over HTTPS; that obviously requires VPN / on-corp network and credentialed access to the repo.
+
+Cadence: run before any nontrivial work that depends on a new model; otherwise quarterly is fine. The control plane (`ucloud-api`) and data plane (this skill) are intentionally decoupled — bumping one doesn't require bumping the other.
